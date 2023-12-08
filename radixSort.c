@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include<stdlib.h>
-#include<time.h>
+#include "sort.h"
 int getMax(int arr[], int n)
 {
     int max = arr[0];
@@ -21,7 +18,7 @@ void radixSort(int arr[], int n)
 
     for (int exp = 1; max / exp > 0; exp *= 10)
     {
-        int output[n];
+        int *output = (int *)malloc(n * sizeof(int));
         int count[10] = {0};
 
         for (int i = 0; i < n; i++)
@@ -41,29 +38,16 @@ void radixSort(int arr[], int n)
         }
 
         memcpy(arr, output, sizeof(int) * n);
+        free(output);
     }
-}
-
-void printArray(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
-    printf("\n");
 }
 
 int main()
 {
-
-    int n = 10000;
-    int arr[n];
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100000;
-    }
-    radixSort(arr,sizeof(arr)/sizeof(arr[0]));
-    printArray(arr,sizeof(arr)/sizeof(arr[0]));
+    int length = LENGTH;
+    int *arr = generateArray(length);
+    radixSort(arr, length);
+    isArraySorted(arr, length) ? printf("Sorted\n") : printf("Not sorted\n");
+    free(arr);
     return 0;
 }

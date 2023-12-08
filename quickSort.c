@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <time.h>
-void quickSort(int arr[], int left, int right);
-int main()
-{
-    int n = 10000;
-    int arr[n];
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100000;
-    }
-    int len = sizeof(arr) / sizeof(arr[0]);
-    quickSort(arr, 0, len - 1);
-    for (int i = 0; i < len; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
-}
+#include "sort.h"
 void quickSort(int arr[], int left, int right)
 {
     if (left > right)
@@ -40,4 +22,13 @@ void quickSort(int arr[], int left, int right)
     arr[i] = key;
     quickSort(arr, left, i - 1);
     quickSort(arr, i + 1, right);
+}
+int main()
+{
+    int length = LENGTH;
+    int *arr = generateArray(length);
+    quickSort(arr, 0, length - 1);
+    isArraySorted(arr, length) ? printf("Sorted\n") : printf("Not sorted\n");
+    free(arr);
+    return 0;
 }

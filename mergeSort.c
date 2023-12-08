@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
+#include "sort.h"
 void merge(int arr[], int tmp[], int left, int mid, int right)
 {
     int leftCur = left;
@@ -40,17 +37,10 @@ void mergeSort(int arr[], int len)
 }
 int main(void)
 {
-    int n = 10000;
-    int arr[n];
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100000;
-    }
-    int len = sizeof(arr) / sizeof(arr[0]);
-    mergeSort(arr, len);
-    for (int i = 0; i < len; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
+    int length = LENGTH;
+    int *arr = generateArray(length);
+    mergeSort(arr, length);
+    isArraySorted(arr, length) ? printf("Sorted\n") : printf("Not sorted\n");
+    free(arr);
+    return 0;
 }

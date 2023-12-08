@@ -1,10 +1,4 @@
-#include <stdio.h>
-void swap(int *v1, int *v2)
-{
-    int temp = *v1;
-    *v1 = *v2;
-    *v2 = temp;
-}
+#include "sort.h"
 void selection_sort(int *arr, int length)
 {
     for (int i = 0; i < length - 1; i++)
@@ -21,18 +15,11 @@ void selection_sort(int *arr, int length)
     }
 }
 int main()
-{
-    int n = 10000;
-    int arr[n];
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100000;
-    }
-    selection_sort(arr, sizeof(arr) / sizeof(arr[0]));
-    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
-    {
-        printf("%d\t", arr[i]);
-    }
+{ 
+    int length = LENGTH;
+    int *arr = generateArray(length);
+    selection_sort(arr, length);
+    isArraySorted(arr, length) ? printf("Sorted\n") : printf("Not sorted\n");
+    free(arr);
     return 0;
 }

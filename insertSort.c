@@ -1,15 +1,6 @@
-#include <stdio.h>
-#include <time.h>
-int main()
+#include "sort.h"
+void insertSort(int arr[], int len)
 {
-    int n = 10000;
-    int arr[n];
-    srand(time(NULL));
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = rand() % 100000;
-    }
-    int len = sizeof(arr) / sizeof(arr[0]);
     for (int i = 0; i < len; i++)
     {
         int r = i;
@@ -21,8 +12,13 @@ int main()
             r--;
         }
     }
-    for (int i = 0; i < len; i++)
-    {
-        printf("%d\t", arr[i]);
-    }
+}
+int main()
+{
+    int length = LENGTH;
+    int *arr = generateArray(length);
+    insertSort(arr, length);
+    isArraySorted(arr, length) ? printf("Sorted\n") : printf("Not sorted\n");
+    free(arr);
+    return 0;
 }
